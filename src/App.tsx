@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import { TodoList } from './components/TodoList';
+import {Heading} from './components/Heading';
+import { AddTodoForm } from './components/AddTodoForm';
+import styled from '@stitches/react';
 
-function App() {
+const initialTodos:Array<Todo > = [
+  {text: 'Play Badminton', complete: true},
+  { text: 'Go Out', complete: false },
+  { text: 'Cry ', complete: true },
+]
+
+const App: React.FunctionComponent = () => {
+  const [todos, setTodos] = useState(initialTodos)
+  
+  const toggleTodo: ToggleTodo = (selectedTodo ) => {
+    const newTodos  = todos.map(todo => { 
+      if (todo === selectedTodo) {
+        return {
+          ...todo,
+          complete: !todo.complete
+        }
+      }
+      return todo;
+    })
+    setTodos(newTodos)
+  }
+
+  const addTodo: AddTodo = (newTodo) => {
+    if (newTodo !== '') {
+    setTodos([...todos, {text: newTodo, complete: false}]);
+      
+    }
+  }
+
+  const removeTodo: RemoveTodo = (todoToRemove) => {
+    let updateTodos: Array<Todo> = todos.filter(todo => todo.text !== todoToRemove.text);
+    setTodos(updateTodos);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <React.Fragment>
+      <Heading />
+      <AddTodoForm addTodo={addTodo} />
+      <TodoList todos={todos} toggleTodo={toggleTodo} onRemoveTodo={removeTodo} />
+  </React.Fragment>
+  )
 }
-
-export default App;
+export default App
