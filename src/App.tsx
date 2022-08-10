@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { TodoList } from './components/TodoList';
 import {Heading} from './components/Heading';
 import { AddTodoForm } from './components/AddTodoForm';
-import styled from '@stitches/react';
+// import styled from '@stitches/react';
 
 const initialTodos:Array<Todo > = [
   {text: 'Play Badminton', complete: true},
