@@ -13,25 +13,26 @@ const ButtonStyle = styled('button', {
     transition: 'all 0.3s ease 0s',
     boxShadow: 'pink 4px 4px 4px 0px',
 		'&:hover': {
-		border: '1px solid white',
+            backgroundColor:'#e093a0',
 		},
 		'&:active' : {
 		boxShadow: '4px 4px 12px #c5c5c5, -4px -4px 12px #ffffff',
 		}
 })
 
-export interface ButtonAddTodoProps {
-    onClick?: () => void;
+export interface ButtonProps {
+    onClick?: Function;
+    label: string
+    backgroundColor?: string,
 }
 
-export const Button: React.FC<ButtonAddTodoProps> = ({ onClick }) => {
-    
-    const handleSubmit = (e: FormEvent<HTMLButtonElement>) => {
+export const Button = ({ onClick, label, backgroundColor }: ButtonProps) => {
+
+    const handleClick = (e: any) => {
         e.preventDefault();
-        onClick?.()
-    };
-    
+        onClick?.();
+    }
     return (
-        <ButtonStyle type="submit" onClick={handleSubmit}>Add Todo</ButtonStyle>
+        <ButtonStyle onClick={handleClick} style={{ backgroundColor}} >{label}</ButtonStyle>
     )
 }

@@ -9,9 +9,10 @@ const StyleHeading = styled('h1', {
   }
 )
 
-export const Heading = () => {
+function Heading() {
   return (
     <StyleHeading>Todo App</StyleHeading>
   )
 }
+export default Heading;
 

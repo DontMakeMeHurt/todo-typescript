@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React from 'react';
 import { styled } from '@stitches/react';
 
 const InputStyle = styled('input', {
@@ -16,16 +16,18 @@ const InputStyle = styled('input', {
 	transition: '.4s'
 })
 
+interface InputProps {
+	disabled?: boolean, 
+	placeholder?: string,
+	type?: string
+	value?: string
+	onChange?: (event: any) => void
+}
 
-export const Input: React.FC = () => {
+export const Input= ({ disabled, placeholder, type, value, onChange}: InputProps) => {
 
-    const [newTodo, setNewTodo] = useState('')
-    
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setNewTodo(e.target.value);
-	};
-
-    return (
-        <InputStyle value={newTodo} type="text" onChange={handleChange} />
+	return (
+		<InputStyle type={type} value={value} placeholder={placeholder} onChange={onChange} disabled={disabled} />
     )
 } 
+

@@ -10,6 +10,10 @@ const TodoText = styled('span', {
 
 const IconStyle = styled('span', {
     fontSize: '24px',
+    '&:hover': {
+        cursor: 'pointer',
+        color: '#fff',
+    },
 })
 
 const LiStyled = styled('li', {
@@ -30,8 +34,7 @@ const LiStyled = styled('li', {
                 fontSize: '16px'
             }
         }
-    }
-
+    },
 })
 
 interface TodoListItemProps {
