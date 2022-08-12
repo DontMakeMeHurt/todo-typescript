@@ -9,10 +9,14 @@ const StyleHeading = styled('h1', {
   }
 )
 
-function Heading() {
+type Heading = {
+  label: string;
+}
+
+export const Heading: React.FC<Heading> = ({label}) => {
   return (
-    <StyleHeading>Todo App</StyleHeading>
+    <StyleHeading>{label}</StyleHeading>
   )
 }
-export default Heading;
+
 

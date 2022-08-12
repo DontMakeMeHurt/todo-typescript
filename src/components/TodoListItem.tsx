@@ -1,20 +1,21 @@
 import React from 'react';
-import './TodoListItem.css'; 
-import { AiOutlineDelete } from 'react-icons/ai';
-import { createTheme, styled } from '@stitches/react';
+import { styled } from '@stitches/react';
+import { IconTodo } from './IconRemoveTodo';
 
 const TodoText = styled('span', {
     fontSize: '24px',
     padding: '8px',
 })
 
-const IconStyle = styled('span', {
+const TodoTextCompleted = styled('span', {
     fontSize: '24px',
-    '&:hover': {
-        cursor: 'pointer',
-        color: '#fff',
-    },
+    padding: '8px',
+    textDecoration: 'line-through'
 })
+
+type IconTodo = {
+    onClick: () => void;
+}
 
 const LiStyled = styled('li', {
     width: '100%',
@@ -37,6 +38,10 @@ const LiStyled = styled('li', {
     },
 })
 
+const LabelStyle = styled('label', {
+
+})
+
 interface TodoListItemProps {
     todo: Todo,
     toggleTodo: ToggleTodo;
@@ -51,13 +56,12 @@ export const TodoListItem: React.FC<TodoListItemProps> = ({ todo, toggleTodo, on
     
     return (
         <LiStyled>
-            <label className={todo.complete? "complete" : undefined}>
-                <input type="checkbox" checked={todo.complete } onChange={() => toggleTodo(todo)} /> 
+            {/* <LabelStyle style={todo.complete ? { textDecoration: 'line-through' } : undefined }>
                 <TodoText>{todo.text}</TodoText>
-            </label>
-        <IconStyle>
-                <AiOutlineDelete onClick={onDelete} />
-        </IconStyle>
+            </LabelStyle> */}
+        <input type="checkbox" checked={todo.complete} onChange={() => toggleTodo(todo)} /> 
+        {todo.complete ? <TodoTextCompleted>{todo.text}</TodoTextCompleted> : <TodoText>{todo.text}</TodoText>}
+        <IconTodo onClick= {onDelete} />
         </LiStyled>
     )
 }

@@ -16,7 +16,7 @@ interface TodoListProps {
     onRemoveTodo: RemoveTodo
 }
 
-export const TodoList: React.FC<TodoListProps> = ({ todos,toggleTodo, onRemoveTodo }) => {
+export const TodoList: React.FC<TodoListProps> = ({ todos,toggleTodo, onRemoveTodo}) => {
     return (
         <UlStyled>
             {todos.map(todo => {

@@ -33,6 +33,7 @@ export const Button = ({ onClick, label, backgroundColor }: ButtonProps) => {
         onClick?.();
     }
     return (
-        <ButtonStyle onClick={handleClick} style={{ backgroundColor}} >{label}</ButtonStyle>
+        <ButtonStyle onClick={handleClick}
+            style={{ backgroundColor }} >{label}</ButtonStyle>
     )
 }

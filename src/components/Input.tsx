@@ -22,6 +22,7 @@ interface InputProps {
 	type?: string
 	value?: string
 	onChange?: (event: any) => void
+	size?: any
 }
 
 export const Input= ({ disabled, placeholder, type, value, onChange}: InputProps) => {

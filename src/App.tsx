@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { TodoList } from './components/TodoList';
-import Heading from './components/Header';
+import {Heading} from './components/Header';
 import AddTodoForm from './components/AddTodoForm';
 // import styled from '@stitches/react';
 
@@ -13,7 +13,8 @@ const initialTodos:Array<Todo > = [
 const App: React.FunctionComponent = () => {
   const [todos, setTodos] = useState(initialTodos)
   
-  const toggleTodo: ToggleTodo = (selectedTodo ) => {
+  const toggleTodo: ToggleTodo = (selectedTodo) => {
+    
     const newTodos  = todos.map(todo => { 
       if (todo === selectedTodo) {
         return {
@@ -40,7 +41,7 @@ const App: React.FunctionComponent = () => {
 
   return (
     <React.Fragment>
-      <Heading />
+      <Heading label='Todo App' />
       <AddTodoForm addTodo={addTodo} />
       <TodoList todos={todos} toggleTodo={toggleTodo} onRemoveTodo={removeTodo} />
   </React.Fragment>
