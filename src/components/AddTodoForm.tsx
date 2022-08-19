@@ -36,7 +36,6 @@ const AddTodoForm: React.FC<AddTodoFormProps> = ({addTodo}) => {
 
 	return (
 		<form>
-			{/* <InputStyle type="text" onChange={handleChange} value={newTodo} /> */}
 			<Input type='text' disabled={false} placeholder="Add new Todo..." value={newTodo} onChange={onChangeInput} />
 			<Button label='Add Todo' onClick={handleSubmit}  />
 		</form>

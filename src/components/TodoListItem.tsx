@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { ReactNode, useState } from 'react';
 import { styled } from '@stitches/react';
 import { IconTodo } from './IconRemoveTodo';
 
 const TodoText = styled('span', {
     fontSize: '24px',
     padding: '8px',
-})
-
-const TodoTextCompleted = styled('span', {
-    fontSize: '24px',
-    padding: '8px',
-    textDecoration: 'line-through'
+    variants: {
+        complete: {
+            true: {
+                textDecoration: 'line-through'
+            }
+        }
+    }
 })
 
 type IconTodo = {
@@ -38,30 +39,34 @@ const LiStyled = styled('li', {
     },
 })
 
-const LabelStyle = styled('label', {
-
-})
-
-interface TodoListItemProps {
-    todo: Todo,
+export type TodoListItemProps = {
+    isComplete?: boolean
+    children: ReactNode | string;
     toggleTodo: ToggleTodo;
     onRemoveTodo: RemoveTodo;
+    id?: number,
+    todo: Todo,
 }
 
-export const TodoListItem: React.FC<TodoListItemProps> = ({ todo, toggleTodo, onRemoveTodo }) => {
-    
+export const TodoListItem: React.FC<TodoListItemProps> = ({ children, todo, onRemoveTodo, isComplete, id }) => {
+
+    const [isDone, setIsDone] = useState(isComplete);
+
     const onDelete = () => {
         onRemoveTodo(todo);
     }
-    
+
+    const onDone = () => {
+        setIsDone(!isDone);
+    }
+
+
     return (
-        <LiStyled>
-            {/* <LabelStyle style={todo.complete ? { textDecoration: 'line-through' } : undefined }>
-                <TodoText>{todo.text}</TodoText>
-            </LabelStyle> */}
-        <input type="checkbox" checked={todo.complete} onChange={() => toggleTodo(todo)} /> 
-        {todo.complete ? <TodoTextCompleted>{todo.text}</TodoTextCompleted> : <TodoText>{todo.text}</TodoText>}
-        <IconTodo onClick= {onDelete} />
+        <LiStyled key={id}>
+            <input type="checkbox" checked={isDone} onChange={onDone} />
+            {isDone && <TodoText complete>{children}</TodoText>}
+            {!isDone && <TodoText>{children}</TodoText>}
+            <IconTodo onClick={() => onDelete()} />
         </LiStyled>
     )
 }

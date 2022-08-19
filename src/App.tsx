@@ -5,9 +5,7 @@ import AddTodoForm from './components/AddTodoForm';
 // import styled from '@stitches/react';
 
 const initialTodos:Array<Todo > = [
-  {text: 'Play Badminton', complete: true},
-  { text: 'Go Out', complete: false },
-  { text: 'Cry ', complete: true },
+
 ]
 
 const App: React.FunctionComponent = () => {
@@ -29,13 +27,15 @@ const App: React.FunctionComponent = () => {
 
   const addTodo: AddTodo = (newTodo) => {
     if (newTodo !== '') {
-    setTodos([...todos, {text: newTodo, complete: false}]);
+    setTodos([...todos, {text: newTodo, complete: false, id: todos.length + 1}]);
       
     }
   }
 
-  const removeTodo: RemoveTodo = (todoToRemove) => {
-    let updateTodos: Array<Todo> = todos.filter(todo => todo.text !== todoToRemove.text);
+  const removeTodo: RemoveTodo = ({ id}) => {
+    let updateTodos: Array<Todo> = todos.filter(todo => {
+      return todo.id !== id
+    });
     setTodos(updateTodos);
   }
 

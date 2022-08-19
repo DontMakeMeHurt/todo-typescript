@@ -13,14 +13,14 @@ const UlStyled = styled('ul', {
 interface TodoListProps {
     todos: Array<Todo>;
     toggleTodo: ToggleTodo;
-    onRemoveTodo: RemoveTodo
+    onRemoveTodo: RemoveTodo,
 }
 
 export const TodoList: React.FC<TodoListProps> = ({ todos,toggleTodo, onRemoveTodo}) => {
     return (
         <UlStyled>
-            {todos.map(todo => {
-                return <TodoListItem todo={todo} key={todo.text} toggleTodo={toggleTodo} onRemoveTodo={onRemoveTodo} />
+            {todos.map((todo, id) => {
+                return <TodoListItem toggleTodo={toggleTodo} todo={todo} onRemoveTodo={onRemoveTodo} key={id} >{ todo.text }</TodoListItem>
             })}
         </UlStyled>
     )
